@@ -1,15 +1,15 @@
 ﻿[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 [void][System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
-#GUI (graafinen käyttöliittymä) 
+#GUI
 
-#itse ikkuna
+#Main window
 $Form = New-Object System.Windows.Forms.Form
 $Form.Size = New-Object System.Drawing.Size(600,600)
 $Form.Text = "GPT-3"
 
 
-#textbox
+#Textbox
 $textbox = New-Object System.Windows.Forms.TextBox
 $textbox.Location = New-Object System.Drawing.Size(10,50) 
 $textbox.Multiline = $true
@@ -31,7 +31,7 @@ $key.Name = "key"
 $Form.Controls.Add($key)
 
 
-#-------Napit-------
+#Buttons
 
 #Submit
 $Submit = New-Object System.Windows.Forms.Button
@@ -42,11 +42,11 @@ $Submit.Name = "Submit"
 #$Submit.Controls.Add($Submit) 
 $Form.Controls.Add($Submit)
 
-#Peruutus nappi
+#Cancel button
 $Peruuta = New-Object System.Windows.Forms.Button
 $Peruuta.Location = New-Object System.Drawing.Size(444,520)
 $Peruuta.Size = New-Object System.Drawing.Size(70,20)
-$Peruuta.Text = "Peruuta"
+$Peruuta.Text = "Cancel"
 $Peruuta.Name = "Peruuta"
 $Peruuta.Add_Click({$Form.Close()})
 $Form.Controls.Add($Peruuta) 
@@ -87,7 +87,7 @@ $output = invoke-RestMethod -Method Post -Headers $headers -Body $data -Uri $uri
 $clean = $output -replace '{@{text=',$query -replace '; index=0; logprobs=;','' -replace 'finish_reason=max_tokens}}','' -replace 'finish_reason=stop}}',''
 $clean = $clean.Trimend() -replace "`t|`n|`r","" -replace " ;|; ",";" -replace "\.\.\.","" -replace '\s\s+',""
 
-# typewriter effect
+#Typewriter effect
 $Random = New-Object System.Random
 $textbox.Text = $query
 $clean = $clean -replace $query,''
