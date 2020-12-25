@@ -61,7 +61,7 @@ $Form.Controls.Add($Peruuta)
 #    {
 
 #            $Submit.PerformClick()
-            [System.Windows.Forms.SendKeys]::SendWait("{BS}")
+#            [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
 #    }
 #})
         
